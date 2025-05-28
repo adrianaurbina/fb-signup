@@ -9,16 +9,9 @@ import org.junit.Test;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class FbSignUpTest extends FbRegisterUser {
+public class FbSignUpTest extends BaseTest {
 	
-	@Before
-	public void setupTest() {
-		initDriver(EnumWebDriver.CHROME); 
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Explicit Wait
-		goTo("https://www.facebook.com/signup");
-		PageFactory.initElements(driver, this);
-	}
-	
+
 	@Test
 	public void TestFBSignUpForm() {
 		PersonModel user = new PersonModel();
@@ -31,10 +24,5 @@ public class FbSignUpTest extends FbRegisterUser {
 		user.birthdate = cal.getTime();
 		
 		FillForm(user);
-		
-	}
-    @After
-    public void teardownTest() {
-    	quitDriver();
-    }
+
 }

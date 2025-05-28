@@ -1,14 +1,20 @@
 import java.text.SimpleDateFormat;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import com.addielearn.FacebookLogin.enums.EnumGender;
 
-public class FbRegisterUser extends WebDriverFactory {
-	WebDriverWait wait;
+public class FbRegisterUser {
+
+	private WebDriverFactory driver;
+
+	public FbRegisterUser(WebDriverFactory driver) {
+		this.driver = driver;
+
+		PageFactory.initElements(this.driver.getDriver(), this);
+	}
 
 @FindBy(name="firstname")
 private WebElement firstName;
@@ -50,6 +56,9 @@ private WebElement NewPassword;
 private WebElement SubmitCTA;
 
 protected void FillForm (PersonModel user) {
+
+	//goto here (if possible declare in parent interface)
+
 	wait.until(ExpectedConditions.visibilityOf(firstName)).sendKeys(user.firstname);
 	lastName.sendKeys(user.lastname);
 	PhoneOrEmail.sendKeys(user.mailorphone);
