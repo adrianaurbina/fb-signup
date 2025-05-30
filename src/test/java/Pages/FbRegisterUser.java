@@ -1,13 +1,12 @@
-package Pages;
+package test.java.Pages;
 
 import java.text.SimpleDateFormat;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-
-import Drivers.WebDriverFactory;
-import Models.PersonModel;
+import test.java.Drivers.WebDriverFactory;
+import test.java.Models.PersonModel;
 import Utils.EnumGender;
 
 public class FbRegisterUser extends BasePage {
@@ -56,7 +55,13 @@ public class FbRegisterUser extends BasePage {
 
 	public FbRegisterUser fillForm(PersonModel user) {
 		this.driver.goTo("https://facebook.com");
-		wait.until(ExpectedConditions.visibilityOf(firstName)).sendKeys(user.firstname);
+
+		// Way 1 with explicit wait
+		//wait.until(ExpectedConditions.visibilityOf(firstName)).sendKeys(user.firstname);
+
+		// Way 2 with implicit wait
+		firstName.sendKeys(user.firstname);
+
 		lastName.sendKeys(user.lastname);
 		PhoneOrEmail.sendKeys(user.mailorphone);
 		NewPassword.sendKeys(user.password);

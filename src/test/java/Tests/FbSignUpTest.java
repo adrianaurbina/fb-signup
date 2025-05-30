@@ -1,10 +1,10 @@
-package Tests;
+package test.java.Tests;
 import java.util.Calendar;
-import Drivers.WebDriverFactory;
-import Models.PersonModel;
-import Pages.FbRegisterUser;
+import test.java.Models.PersonModel;
+import test.java.Pages.FbRegisterUser;
 import Utils.EnumWebDriver;
 import org.testng.annotations.*;
+import test.java.Drivers.WebDriverFactory;
 
 public class FbSignUpTest {
 	private FbRegisterUser signupPage;
@@ -15,7 +15,7 @@ public class FbSignUpTest {
 		driver = new WebDriverFactory();
 		driver.initDriver(EnumWebDriver.CHROME);
 		
-		signupPage = new FbRegisterUser(driver);
+		this.signupPage = new FbRegisterUser(driver);
 		
 	}
 	

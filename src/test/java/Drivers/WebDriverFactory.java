@@ -1,6 +1,8 @@
-package Drivers;
+package test.java.Drivers;
 
 import java.time.Duration;
+
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -33,6 +35,7 @@ public class WebDriverFactory {
 			}
 			// Wait
 			_driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+			_driver.manage().window().setPosition(new Point(-1000, 0)); //open in 2nd screen (when 2nd is on left position)
 			_driver.manage().window().maximize();
 		}
 	}

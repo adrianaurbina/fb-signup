@@ -1,12 +1,8 @@
-package Pages;
+package test.java.Pages;
 
-import java.time.Duration;
-
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import Drivers.WebDriverFactory;
-import Utils.EnumWebDriver;
+import test.java.Drivers.WebDriverFactory;
 
 public class BasePage {
 	protected WebDriverFactory driver;
