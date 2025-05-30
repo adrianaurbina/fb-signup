@@ -1,24 +1,17 @@
-import com.addielearn.FacebookLogin.enums.EnumWebDriver;
-
-import java.time.Duration;
 import java.util.Calendar;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class FbSignUpTest extends FbRegisterUser {
-	
+public class FbSignUpTest {
+	private FbRegisterUser signupPage;
+
 	@Before
 	public void setupTest() {
-		initDriver(EnumWebDriver.CHROME); 
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Explicit Wait
-		goTo("https://www.facebook.com/signup");
-		PageFactory.initElements(driver, this);
+		signupPage = new FbRegisterUser();
+		signupPage.GoToBasePage();
 	}
-	
+
 	@Test
 	public void TestFBSignUpForm() {
 		PersonModel user = new PersonModel();
@@ -29,12 +22,13 @@ public class FbSignUpTest extends FbRegisterUser {
 		Calendar cal = Calendar.getInstance();
 		cal.set(1995, Calendar.AUGUST, 03);
 		user.birthdate = cal.getTime();
-		
-		FillForm(user);
-		
+
+		signupPage.FillForm(user);
+
 	}
-    @After
-    public void teardownTest() {
-    	quitDriver();
-    }
+
+	@After
+	public void teardownTest() {
+		signupPage.close();
+	}
 }

@@ -1,4 +1,4 @@
-package com.addielearn.FacebookLogin.enums;
+package Common;
 
 public enum EnumWebDriver {
 	EDGE, 

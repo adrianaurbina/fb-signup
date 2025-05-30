@@ -1,16 +1,17 @@
+package Pages;
 import java.text.SimpleDateFormat;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import Common.EnumGender;
-import Pages.BasePage;
+import Models.PersonModel;
 
-public class FbRegisterUser extends BasePage{
+public class FbRegisterUser {
+	WebDriverWait wait;
 
-FbRegisterUser() {
-		super("https://www.facebook.com/signup");
-	}
 @FindBy(name="firstname")
 private WebElement firstName;
 
@@ -50,7 +51,7 @@ private WebElement NewPassword;
 @FindBy(id="u_0_n_2N")
 private WebElement SubmitCTA;
 
-public void FillForm (PersonModel user) {
+protected void FillForm (PersonModel user) {
 	wait.until(ExpectedConditions.visibilityOf(firstName)).sendKeys(user.firstname);
 	lastName.sendKeys(user.lastname);
 	PhoneOrEmail.sendKeys(user.mailorphone);
