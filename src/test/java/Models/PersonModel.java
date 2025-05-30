@@ -2,7 +2,7 @@ package Models;
 
 import java.util.Date;
 
-import Common.EnumGender;
+import Utils.EnumGender;
 
 public class PersonModel {
 	public String firstname;

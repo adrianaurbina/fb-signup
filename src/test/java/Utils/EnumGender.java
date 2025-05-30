@@ -1,4 +1,4 @@
-package com.addielearn.FacebookLogin.enums;
+package Utils;
 
 public enum EnumGender {
 Female, Male, Custom

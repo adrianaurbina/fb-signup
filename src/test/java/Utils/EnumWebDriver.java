@@ -1,4 +1,4 @@
-package Common;
+package Utils;
 
 public enum EnumWebDriver {
 	EDGE, 

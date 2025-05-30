@@ -1,18 +1,30 @@
+package Tests;
 import java.util.Calendar;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import Drivers.WebDriverFactory;
 import Models.PersonModel;
 import Pages.FbRegisterUser;
+import Utils.EnumWebDriver;
 
 public class FbSignUpTest {
 	private FbRegisterUser signupPage;
+	private WebDriverFactory driver;
 
 	@Before
 	public void setupTest() {
-		signupPage = new FbRegisterUser();
-		signupPage.GoToBasePage();
+		driver = new WebDriverFactory();
+		driver.initDriver(EnumWebDriver.CHROME);
+		
+		signupPage = new FbRegisterUser(driver);
+		
+	}
+	
+	@Test
+	public void HelloWorld() {
+		System.out.println("hello culeros");
 	}
 
 	@Test
@@ -26,7 +38,9 @@ public class FbSignUpTest {
 		cal.set(1995, Calendar.AUGUST, 03);
 		user.birthdate = cal.getTime();
 
-		signupPage.FillForm(user);
+		signupPage
+			.fillForm(user)
+			.dummy();
 
 	}
 
