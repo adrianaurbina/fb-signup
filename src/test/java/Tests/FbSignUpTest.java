@@ -1,19 +1,16 @@
 package Tests;
 import java.util.Calendar;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
 import Drivers.WebDriverFactory;
 import Models.PersonModel;
 import Pages.FbRegisterUser;
 import Utils.EnumWebDriver;
+import org.testng.annotations.*;
 
 public class FbSignUpTest {
 	private FbRegisterUser signupPage;
 	private WebDriverFactory driver;
 
-	@Before
+	@BeforeMethod
 	public void setupTest() {
 		driver = new WebDriverFactory();
 		driver.initDriver(EnumWebDriver.CHROME);
@@ -44,8 +41,9 @@ public class FbSignUpTest {
 
 	}
 
-	@After
+	@AfterMethod
 	public void teardownTest() {
-		signupPage.close();
+		//signupPage.quit();
+		this.driver.quitDriver();
 	}
 }
