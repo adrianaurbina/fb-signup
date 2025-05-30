@@ -14,14 +14,7 @@ public class FbSignUpTest {
 	public void setupTest() {
 		driver = new WebDriverFactory();
 		driver.initDriver(EnumWebDriver.CHROME);
-		
 		this.signupPage = new FbRegisterUser(driver);
-		
-	}
-	
-	@Test
-	public void HelloWorld() {
-		System.out.println("hello culeros");
 	}
 
 	@Test
@@ -38,12 +31,10 @@ public class FbSignUpTest {
 		signupPage
 			.fillForm(user)
 			.dummy();
-
 	}
 
 	@AfterMethod
 	public void teardownTest() {
-		//signupPage.quit();
 		this.driver.quitDriver();
 	}
 }

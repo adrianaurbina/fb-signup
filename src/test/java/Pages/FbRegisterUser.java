@@ -1,10 +1,13 @@
 package test.java.Pages;
 
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import test.java.Drivers.WebDriverFactory;
 import test.java.Models.PersonModel;
 import Utils.EnumGender;
@@ -13,6 +16,9 @@ public class FbRegisterUser extends BasePage {
 	public FbRegisterUser(WebDriverFactory driver) {
 		super(driver);
 	}
+
+	@FindBy(css = "[data-testid='open-registration-form-button']")
+	private WebElement buttonCreateNewAccount;
 
 	@FindBy(name = "firstname")
 	private WebElement firstName;
@@ -56,11 +62,14 @@ public class FbRegisterUser extends BasePage {
 	public FbRegisterUser fillForm(PersonModel user) {
 		this.driver.goTo("https://facebook.com");
 
+		buttonCreateNewAccount.click();
+
 		// Way 1 with explicit wait
-		//wait.until(ExpectedConditions.visibilityOf(firstName)).sendKeys(user.firstname);
+		WebDriverWait wait = new WebDriverWait(this.driver.getDriver(), Duration.ofSeconds(5));
+		wait.until(ExpectedConditions.visibilityOf(firstName)).sendKeys(user.firstname);
 
 		// Way 2 with implicit wait
-		firstName.sendKeys(user.firstname);
+		//firstName.sendKeys(user.firstname);
 
 		lastName.sendKeys(user.lastname);
 		PhoneOrEmail.sendKeys(user.mailorphone);
@@ -68,24 +77,17 @@ public class FbRegisterUser extends BasePage {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd");
 		String day = sdf.format(user.birthdate);
-		new Select(Day).selectByVisibleText(day);
+		new Select(Day).selectByVisibleText(day); //ToDo Addie find how to print DAY without leading zeros (needed '3' and is searching for '03')
 
 		sdf = new SimpleDateFormat("MMM");
 		String month = sdf.format(user.birthdate);
-		new Select(Month).selectByVisibleText(month);
+		new Select(Month).selectByVisibleText(month);  //ToDo Addie find how to print MONTH without leading zeros
 
 		sdf = new SimpleDateFormat("yyyy");
 		String year = sdf.format(user.birthdate);
 		new Select(Year).selectByVisibleText(year);
 
 		selectGender(user.gender);
-
-		try {
-			wait.wait(5000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
 		return this;
 	}
 

@@ -5,6 +5,7 @@ import java.time.Duration;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -16,27 +17,42 @@ public class WebDriverFactory {
 	private WebDriver _driver;
 
 	public void initDriver(EnumWebDriver type) {
-		if (_driver == null) {
-			switch (type) {
-			case CHROME:
-				WebDriverManager.chromedriver().setup();
-				_driver = new ChromeDriver();
-				break;
-			case EDGE:
-				WebDriverManager.edgedriver().setup();
-				_driver = new EdgeDriver();
-				break;
-			case FIREFOX:
-				WebDriverManager.firefoxdriver().setup();
-				_driver = new FirefoxDriver();
-				break;
-			default:
-				throw new RuntimeException("Invalid driver type");
+
+		try {
+			if (_driver == null) {
+				switch (type) {
+					case CHROME:
+						ChromeOptions chromeOptions;
+						chromeOptions = new ChromeOptions();
+						chromeOptions.addArguments("--remote-allow-origins=*");
+						chromeOptions.addArguments("--disable-extensions");
+						chromeOptions.addArguments("--disable-notifications");
+						chromeOptions.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36");
+						chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
+
+						WebDriverManager.chromedriver().setup();
+						_driver = new ChromeDriver(chromeOptions); //aqui esta el pedo
+						break;
+					case EDGE:
+						WebDriverManager.edgedriver().setup();
+						_driver = new EdgeDriver();
+						break;
+					case FIREFOX:
+						WebDriverManager.firefoxdriver().setup();
+						_driver = new FirefoxDriver();
+						break;
+					default:
+						throw new RuntimeException("Invalid driver type");
+				}
+				// Wait
+				_driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+				_driver.manage().window().setPosition(new Point(-1000, 0)); //open in 2nd screen (when 2nd is on left position)
+				_driver.manage().window().maximize();
 			}
-			// Wait
-			_driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-			_driver.manage().window().setPosition(new Point(-1000, 0)); //open in 2nd screen (when 2nd is on left position)
-			_driver.manage().window().maximize();
+		}
+		catch (Exception e) {
+			System.out.println("Addie: " + e.getMessage());
+			throw e;
 		}
 	}
 
