@@ -1,9 +1,12 @@
 package test.java.com.tests.parent;
 
+import main.java.com.utils.DataGenerator;
 import org.testng.annotations.*;
 import main.java.com.pages.FbRegisterUserPage;
 import main.java.com.utils.EnumWebDriver;
 import main.java.com.drivers.WebDriverFactory;
+
+import java.text.SimpleDateFormat;
 
 public abstract class BaseTest {
     protected FbRegisterUserPage signupPage;
@@ -18,6 +21,13 @@ public abstract class BaseTest {
 
     @AfterMethod
     protected void teardownTest() {
+        takeScreenshot();
         this.driver.quitDriver();
+    }
+
+    protected void takeScreenshot() {
+        String timestamp = DataGenerator.returnCurrentTimestamp( new SimpleDateFormat("yyyyMMdd_HHmmss"));
+        String screenshotLocation = "C://AutomationScreenshots//Addie_" + timestamp + ".png";
+        this.driver.takeScreenshot(screenshotLocation);
     }
 }

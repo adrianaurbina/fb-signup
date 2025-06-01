@@ -1,7 +1,12 @@
 package main.java.com.drivers;
 
+import java.io.File;
 import java.time.Duration;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Point;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -61,6 +66,26 @@ public class WebDriverFactory {
 		if (_driver != null) {
 			_driver.quit();
 			_driver = null;
+		}
+	}
+
+	public void takeScreenshot(String fileLocation) {
+		//https://www.guru99.com/take-screenshot-selenium-webdriver.html
+		try {
+			//Convert web driver object to TakeScreenshot
+			TakesScreenshot scrShot =((TakesScreenshot)getDriver());
+
+			//Call getScreenshotAs method to create image file
+			File srcFile=scrShot.getScreenshotAs(OutputType.FILE);
+
+			//Move image file to new destination
+			File destFile=new File(fileLocation);
+
+			//Copy file at destination
+			FileUtils.copyFile(srcFile, destFile);
+		}
+		catch (Exception e) {
+			System.out.println("FAILURE ::: Not able to take screenshot in: " + fileLocation);
 		}
 	}
 
