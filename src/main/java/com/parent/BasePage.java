@@ -1,8 +1,8 @@
-package test.java.Pages;
+package main.java.com.pages;
 
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import test.java.Drivers.WebDriverFactory;
+import main.java.com.drivers.WebDriverFactory;
 
 public class BasePage {
 	protected WebDriverFactory driver;
