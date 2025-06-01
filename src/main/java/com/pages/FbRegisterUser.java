@@ -76,7 +76,7 @@ public class FbRegisterUser extends BasePage {
 		PhoneOrEmail.sendKeys(user.mailorphone);
 		NewPassword.sendKeys(user.password);
 
-		SimpleDateFormat sdf = new SimpleDateFormat("dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("d");
 		String day = sdf.format(user.birthdate);
 		new Select(Day).selectByVisibleText(day); //ToDo Addie find how to print DAY without leading zeros (needed '3' and is searching for '03')
 
