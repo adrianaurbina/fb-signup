@@ -1,16 +1,17 @@
-package test.java.Pages;
+package main.java.com.pages;
 
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 
+import main.java.com.parent.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import test.java.Drivers.WebDriverFactory;
-import test.java.Models.PersonModel;
-import Utils.EnumGender;
+import main.java.com.drivers.WebDriverFactory;
+import main.java.com.models.PersonModel;
+import main.java.com.utils.EnumGender;
 
 public class FbRegisterUser extends BasePage {
 	public FbRegisterUser(WebDriverFactory driver) {

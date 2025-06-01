@@ -1,8 +1,7 @@
-package test.java.Models;
+package main.java.com.models;
 
 import java.util.Date;
-
-import Utils.EnumGender;
+import main.java.com.utils.EnumGender;
 
 public class PersonModel {
 	public String firstname;

@@ -1,22 +1,11 @@
-package test.java.com.tests;
+package test.java.com.tests.testCases;
 
 import org.testng.annotations.*;
 import java.util.Calendar;
 import main.java.com.models.PersonModel;
-import main.java.com.pages.FbRegisterUser;
-import main.java.com.utils.EnumWebDriver;
-import main.java.com.drivers.WebDriverFactory;
+import test.java.com.tests.parent.BaseTest;
 
-public class FbSignUpTest {
-    private FbRegisterUser signupPage;
-    private WebDriverFactory driver;
-
-    @BeforeMethod
-    public void setupTest() {
-        driver = new WebDriverFactory();
-        driver.initDriver(EnumWebDriver.CHROME);
-        this.signupPage = new FbRegisterUser(driver);
-    }
+public class FbSignUpTest extends BaseTest {
 
     @Test
     public void testFBSignUpForm() {
@@ -30,12 +19,7 @@ public class FbSignUpTest {
         user.birthdate = cal.getTime();
 
         signupPage
-                .fillForm(user)
-                .dummy();
-    }
-
-    @AfterMethod
-    public void teardownTest() {
-        this.driver.quitDriver();
+            .fillForm(user)
+            .dummy();
     }
 }

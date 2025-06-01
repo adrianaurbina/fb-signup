@@ -1,7 +1,5 @@
 /bin
-.vscode/
-.settings/
-.project
-.classpath
 /.idea
-/.settings
+/.vscode
+/target
+/idea

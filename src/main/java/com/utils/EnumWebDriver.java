@@ -1,4 +1,4 @@
-package Utils;
+package main.java.com.utils;
 
 public enum EnumWebDriver {
 	EDGE, 
