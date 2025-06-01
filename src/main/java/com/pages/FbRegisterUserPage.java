@@ -2,8 +2,8 @@ package main.java.com.pages;
 
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-
 import main.java.com.parent.BasePage;
+import main.java.com.parent.IBasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,8 +13,8 @@ import main.java.com.drivers.WebDriverFactory;
 import main.java.com.models.PersonModel;
 import main.java.com.utils.EnumGender;
 
-public class FbRegisterUser extends BasePage {
-	public FbRegisterUser(WebDriverFactory driver) {
+public class FbRegisterUserPage extends BasePage implements IBasePage {
+	public FbRegisterUserPage(WebDriverFactory driver) {
 		super(driver);
 	}
 
@@ -60,8 +60,12 @@ public class FbRegisterUser extends BasePage {
 	@FindBy(name = "websubmit")
 	private WebElement SubmitCTA;
 
-	public FbRegisterUser fillForm(PersonModel user) {
+	public void goTo(String url) {
 		this.driver.goTo("https://facebook.com");
+	}
+
+	public FbRegisterUserPage fillForm(PersonModel user) {
+		goTo("https://facebook.com");
 
 		buttonCreateNewAccount.click();
 
@@ -78,11 +82,11 @@ public class FbRegisterUser extends BasePage {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("d");
 		String day = sdf.format(user.birthdate);
-		new Select(Day).selectByVisibleText(day); //ToDo Addie find how to print DAY without leading zeros (needed '3' and is searching for '03')
+		new Select(Day).selectByVisibleText(day);
 
 		sdf = new SimpleDateFormat("MMM");
 		String month = sdf.format(user.birthdate);
-		new Select(Month).selectByVisibleText(month);  //ToDo Addie find how to print MONTH without leading zeros
+		new Select(Month).selectByVisibleText(month);
 
 		sdf = new SimpleDateFormat("yyyy");
 		String year = sdf.format(user.birthdate);
@@ -106,13 +110,13 @@ public class FbRegisterUser extends BasePage {
 		}
 	}
 	
-	public FbRegisterUser dummy() {
+	public FbRegisterUserPage dummy() {
 		//Do nothing
 		System.out.println("hola culeros");
 		return this;
 	}
 
-	public FbRegisterUser clickSignUp() {
+	public FbRegisterUserPage clickSignUp() {
 		SubmitCTA.click();
 		return this;
 	}
