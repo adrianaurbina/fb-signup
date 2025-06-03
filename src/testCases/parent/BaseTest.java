@@ -1,4 +1,4 @@
-package tests.parent;
+package testCases.parent;
 
 import utils.DataGenerator;
 import org.testng.annotations.*;
