@@ -6,7 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import main.java.com.drivers.WebDriverFactory;
 
-public class BasePage {
+public abstract class BasePage {
 	protected WebDriverFactory driver;
 	protected WebDriverWait wait;
 	protected String URL;
