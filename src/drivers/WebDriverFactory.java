@@ -1,4 +1,4 @@
-package main.java.com.drivers;
+package drivers;
 
 import java.io.File;
 import java.time.Duration;
@@ -12,7 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import main.java.com.utils.EnumWebDriver;
+import utils.EnumWebDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class WebDriverFactory {

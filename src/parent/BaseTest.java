@@ -1,10 +1,10 @@
-package test.java.com.tests.parent;
+package tests.parent;
 
-import main.java.com.utils.DataGenerator;
+import utils.DataGenerator;
 import org.testng.annotations.*;
-import main.java.com.pages.FbRegisterUserPage;
-import main.java.com.utils.EnumWebDriver;
-import main.java.com.drivers.WebDriverFactory;
+import pages.FbRegisterUserPage;
+import utils.EnumWebDriver;
+import drivers.WebDriverFactory;
 
 import java.text.SimpleDateFormat;
 

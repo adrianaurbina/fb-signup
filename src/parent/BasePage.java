@@ -1,8 +1,8 @@
-package main.java.com.parent;
+package parent;
 
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import main.java.com.drivers.WebDriverFactory;
+import drivers.WebDriverFactory;
 
 public class BasePage {
 	protected WebDriverFactory driver;

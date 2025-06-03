@@ -1,8 +1,8 @@
-package main.java.com.models;
+package models;
 
 import java.util.Calendar;
 import java.util.Date;
-import main.java.com.utils.EnumGender;
+import utils.EnumGender;
 
 public class PersonModel {
 	public String firstname;

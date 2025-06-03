@@ -1,8 +1,8 @@
-package test.java.com.tests.testCases;
+package testCases;
 
 import org.testng.annotations.*;
-import main.java.com.models.PersonModel;
-import test.java.com.tests.parent.BaseTest;
+import models.PersonModel;
+import testCases.parent.BaseTest;
 
 public class FbSignUpTest extends BaseTest {
 
