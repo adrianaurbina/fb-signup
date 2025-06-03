@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import main.java.com.parent.BasePage;
 import main.java.com.parent.IBasePage;
+import org.apache.commons.lang3.NotImplementedException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,7 +16,7 @@ import main.java.com.utils.EnumGender;
 
 public class FbRegisterUserPage extends BasePage implements IBasePage {
 	public FbRegisterUserPage(WebDriverFactory driver) {
-		super(driver);
+		super(driver); // super keyword makes reference to the parent
 	}
 
 	@FindBy(css = "[data-testid='open-registration-form-button']")
@@ -64,7 +65,7 @@ public class FbRegisterUserPage extends BasePage implements IBasePage {
 		this.driver.goTo("https://facebook.com");
 	}
 
-	public FbRegisterUserPage fillForm(PersonModel user) {
+	public FbRegisterUserPage fillForm(PersonModel user) throws InterruptedException { // throws 'AVISA' que puede lanzar una exception de ese tipo
 		goTo("https://facebook.com");
 
 		buttonCreateNewAccount.click();
@@ -75,6 +76,8 @@ public class FbRegisterUserPage extends BasePage implements IBasePage {
 
 		// Way 2 with implicit wait
 		//firstName.sendKeys(user.firstname);
+
+		Thread.sleep(1500);
 
 		lastName.sendKeys(user.lastname);
 		PhoneOrEmail.sendKeys(user.mailorphone);
@@ -99,7 +102,7 @@ public class FbRegisterUserPage extends BasePage implements IBasePage {
 	private void selectGender(EnumGender CGender) {
 		switch (CGender) {
 		case Female:
-			genderFemale.click();
+			this.click(genderFemale, "Female [Radio Button]");
 			break;
 		case Male:
 			genderMale.click();
@@ -112,12 +115,16 @@ public class FbRegisterUserPage extends BasePage implements IBasePage {
 	
 	public FbRegisterUserPage dummy() {
 		//Do nothing
-		System.out.println("hola culeros");
+		System.out.println("dummy");
 		return this;
 	}
 
 	public FbRegisterUserPage clickSignUp() {
 		SubmitCTA.click();
 		return this;
+	}
+
+	public void logOut() {
+		throw new NotImplementedException("Nos falta implementar aqui raza");
 	}
 }

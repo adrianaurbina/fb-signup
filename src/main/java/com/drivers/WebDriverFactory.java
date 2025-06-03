@@ -52,9 +52,10 @@ public class WebDriverFactory {
 				_driver.manage().window().maximize();
 			}
 		}
-		catch (Exception e) {
-			System.out.println("Addie: " + e.getMessage());
-			throw e;
+		// 3 cosas: Cachas, Manejas/Resuelves y Avientas
+		catch (Exception e) { // que cachas?
+			System.out.println("Driver construction failed because of: " + e.getMessage()); // que haces? (1 o n lineas)
+			throw e; //que avientas (forzar el fallo) sin esta linea el test jamas fallaria
 		}
 	}
 
